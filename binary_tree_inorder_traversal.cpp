@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode *> s;
+        TreeNode *pNode;
+        pNode = root;
+        vector<int> result;
+        while (!s.empty() || pNode) {
+            if (pNode) {
+                s.push(pNode);
+                pNode = (*pNode).left;
+            }
+            else {
+                pNode = s.top();
+                s.pop();
+                result.push_back((*pNode).val);
+                pNode = (*pNode).right;
+            }
+        }
+        return result;
+    }
+};
+int main(void) {
+    return 0;
+}
