@@ -17,8 +17,6 @@ public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int l = search(nums, target - 0.5) + 1;
         int r = search(nums, target + 0.5);
-        cout << l << endl;
-        cout << r << endl;
         vector<int> result;
         if (l <= r) {
             result.push_back(l);
