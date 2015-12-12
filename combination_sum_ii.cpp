@@ -10,7 +10,7 @@ public:
             return;
         }
         for (int j = start; j < candidates.size(); ++j) {
-            if (j != 0 && temp.size() == 0 && candidates[j] == candidates[j - 1]) continue;
+            if (j != 0 && candidates[j] == candidates[j - 1] && j > start) continue;
             if (candidates[j] > target) break;
             temp.push_back(candidates[j]);
             combination(result, j + 1, target - candidates[j], temp, candidates);
@@ -30,7 +30,7 @@ int main(void) {
     vector<int> candidates = {10, 1, 2, 7, 6, 1, 5};
     vector<int> candidates1 = {2, 2, 2};
     Solution s;
-    vector<vector<int>> result = s.combinationSum2(candidates, 8);
+    vector<vector<int>> result = s.combinationSum2(candidates1, 4);
     for (int i = 0; i < result.size(); ++i) {
         for (int j = 0; j < result[i].size(); ++j) {
             cout << result[i][j] << "   ";
