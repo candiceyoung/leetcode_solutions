@@ -27,17 +27,15 @@ public:
         }
         for (int i = 0; i < n; ++i) {
             if (check(temp, row, i) == true) {
-                string row_str(n, '.');
-                row_str[i] = 'Q';
-                temp.push_back(row_str);
+                temp[row][i] = 'Q';
                 recursive(n, result, row+1, temp);
-                temp.pop_back();
+                temp[row][i] = '.';
             }
         }
     }
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> result;
-        vector<string> temp;
+        vector<string> temp(n, string(n, '.'));
         recursive(n, result, 0, temp);
         return result;
     }
