@@ -66,5 +66,31 @@ public:
         return true;
     }
     */
-    
+    // dfs
+    /*
+    void helper(vector<vector<int>> &graph, vector<int> &visited, int i, bool &cycle) {
+        if (visited[i] == 1) {cycle = true; return;}
+        visited[i] = 1;
+        for (vector<int>::iterator it = graph[i].begin(); it != graph[i].end(); ++it) {
+            helper(graph, visited, *it, cycle);
+            if (cycle) return;
+        }
+        visited[i] = 2;
+    }
+    bool canFinish(int numberCourses, vector<pair<int, int>> &prerequisites) {
+        if (prerequisites.size() == 0) return true;
+        if (numberCourses == 0) return true;
+        vector<vector<int>> graph(numberCourses);
+        for (int i = 0; i < prerequisites.size(); ++i) {
+            graph[prerequisites[i].first].push_back(prerequisites[i].second);
+        }
+        vector<int> visited(numberCourses, 0);
+        bool cycle = false;
+        for (int i = 0; i < numberCourses; ++i) {
+            if (cycle) return false;
+            if (!visited[i]) helper(graph, visited, i, cycle);
+        }
+        return !cycle;
+    }
+    */
 };
