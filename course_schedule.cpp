@@ -27,4 +27,44 @@ public:
         }
         return true;
     }
+    // topological sort
+    /*
+    void helper(vector<vector<int>> &graph, vector<bool> &visited, int i, stack<int> &stk) {
+        visited[i] = true;
+        for (vector<int>::iterator it = graph[i].begin(); it != graph[i].end(); ++it) {
+            if (!visited[*it]) helper(graph, visited, *it, stk);
+        }
+        stk.push(i);
+    }
+    bool canFinish(int numberCourses, vector<pair<int, int>> &prerequisites) {
+        if (prerequisites.size() == 0) return true;
+        if (numberCourses == 0) return true;
+        vector<vector<int>> graph(numberCourses);
+        for (int i = 0; i < prerequisites.size(); ++i) {
+            graph[prerequisites[i].first].push_back(prerequisites[i].second);
+        }
+        vector<bool> visited(numberCourses, false);
+        stack<int> stk;
+        for (int i = 0; i < numberCourses; ++i) {
+            if (!visited[i]) helper(graph, visited, i, stk);
+        }
+        for (int i = 0; i < numberCourses; ++i) {
+            visited[i] = false;
+        }
+        int top = stk.top();
+        stk.pop();
+        visited[top] = true;
+        int size = stk.size();
+        for (int i = 0; i < size; ++i) {
+            int top = stk.top();
+            stk.pop();
+            visited[top] = true;
+            for (vector<int>::iterator it = graph[top].begin(); it != graph[top].end(); ++it) {
+                if (visited[*it]) return false;
+            }
+        }
+        return true;
+    }
+    */
+    
 };
