@@ -37,7 +37,7 @@ public:
         if (roots[index] == -1) return index;
         else return find(roots, roots[index]);
     }
-    int uni(vector<int> &roots, int a, int b) {
+    void uni(vector<int> &roots, int a, int b) {
         int a_root = find(roots, a);
         int b_root = find(roots, b);
         if (a_root != b_root) {
