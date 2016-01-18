@@ -25,3 +25,33 @@ public:
         return count;
     }
 };
+// Solution 2: union find
+/*
+class Solution {
+private:
+    int total;
+public:
+    int find(vector<int> &roots, int i) {
+        if (roots[i] == -1) return i;
+        else return find(roots, roots[i]);
+    }
+    int merge(vector<int> &roots, int a, int b) {
+        int a_root = find(roots, a);
+        int b_root = find(roots, b);
+        if (a_root != b_root) {
+            roots[b_root] = a_root;
+            total--;
+        }
+    }
+    int countComponents(int n, vector<pair<int, int>>& edges) {
+        vector<int> roots(n, -1);
+        total = n;
+        for (int i = 0; i < edges.size(); ++i) {
+            int from = edges[i].first;
+            int to = edges[i].second;
+            merge(roots, from, to);
+        }
+        return total;
+    }
+};
+*/
