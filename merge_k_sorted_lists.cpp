@@ -32,3 +32,31 @@ public:
 int main(void) {
     return 0;
 }
+
+/*
+class myComparison {
+public:
+    bool operator()(const ListNode* a, const ListNode* b) {
+        return a->val > b->val;
+    }
+};
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode *dummy = new ListNode(0);
+        ListNode *head = dummy;
+        priority_queue<ListNode*, vector<ListNode*>, myComparison> record;
+        for (int i = 0; i < lists.size(); ++i) {
+            if (lists[i]) record.push(lists[i]);
+        }
+        while (!record.empty()) {
+            ListNode *smallest = record.top();
+            record.pop();
+            dummy->next = smallest;
+            dummy = dummy->next;
+            if (smallest->next) record.push(smallest->next);
+        }
+        return head->next;
+    }
+};
+*/
