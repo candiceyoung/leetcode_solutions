@@ -5,14 +5,15 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int min = INT_MAX, max = 0;
-        vector<int>::iterator it;
-        for (it = prices.begin(); it < prices.end(); ++it) {
-            if (*it < min) min = *it;
-            int diff = *it - min;
-            if (max < diff) max = diff;
+        int size = prices.size();
+        if (size == 0) return 0;
+        int maximum = INT_MIN;
+        int minimum = INT_MAX;
+        for (int i = 0; i < size; ++i) {
+            minimum = min(minimum, prices[i]);
+            maximum = max(maximum, prices[i] - minimum);
         }
-        return max;
+        return maximum;
     }
 };
 int main(void) {
