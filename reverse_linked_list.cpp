@@ -25,3 +25,18 @@ public:
         return dummy->next;
     }
 };
+/* recursive
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;
+        if (!head || head->next == NULL) return head;
+        ListNode *after = reverseList(head->next);
+        dummy->next = after;
+        head->next->next = head;
+        head->next = NULL;
+        return dummy->next;
+    }
+};
+*/
