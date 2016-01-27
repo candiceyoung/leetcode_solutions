@@ -30,3 +30,42 @@ int main(void) {
     cout << result.size() << endl;
     return 0;
 }
+
+/*
+class Solution {
+public:
+    void recursive(int left, int right, vector<string> &result, string &temp, int n) {
+        if (temp.length() == 2 * n && left == n && right == n) {
+            result.push_back(temp);
+            return;
+        }
+        if (left > right) {
+            if (left + 1 <= n) {
+                temp += '(';
+                recursive(left + 1, right, result, temp, n);
+                temp.pop_back();
+            }
+            if (right + 1 <= n) {
+                temp += ')';
+                recursive(left, right + 1, result, temp, n);
+                temp.pop_back();
+            }
+        }
+        else if (left == right) {
+            if (left + 1 <= n) {
+                temp += '(';
+                recursive(left + 1, right, result, temp, n);
+                temp.pop_back();
+            }
+        }
+        else return;
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> result;
+        if (n == 0) return result;
+        string temp = "";
+        recursive(0, 0, result, temp, n);
+        return result;
+    }
+};
+*/
