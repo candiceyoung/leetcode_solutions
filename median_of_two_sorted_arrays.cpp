@@ -31,6 +31,7 @@ public:
 };
 
 /*
+https://leetcode.com/discuss/41621/very-concise-iterative-solution-with-detailed-explanation
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
