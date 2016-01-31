@@ -37,6 +37,22 @@ public:
     }
 };
 */
+/*
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int size = nums.size();
+        if (size == 0) return 0;
+        int result = 0;
+        for (int i = 0; i < size; ++i) {
+            result ^= i;
+            result ^= nums[i];
+        }
+        result ^= size;
+        return result;
+    }
+};
+*/
 int main() {
     vector<int> ivec = {1, 0};
     Solution s;
