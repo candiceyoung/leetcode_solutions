@@ -24,6 +24,21 @@ public:
         return index;
     }
 };
+/*
+class Solution {
+public:
+    int helper(vector<int> &A, int start, int end) {
+        if (start == end) return end;
+        int mid = start + (end - start) / 2;
+        int mid1 = mid + 1;
+        if (A[mid] < A[mid1]) return helper(A, mid + 1, end);
+        else return helper(A, start, mid);
+    }
+    int findPeakElement(vector<int>& nums) {
+        return helper(nums, 0, nums.size() - 1);
+    }
+};
+*/
 int main(void) {
     vector<int> nums = {4, 1, 5, 3};
     Solution s;
