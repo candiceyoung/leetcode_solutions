@@ -21,6 +21,55 @@ class Solution {
             return result;
         }
 };
+/*
+class Solution {
+public:
+    vector<int> singleNumber(vector<int> &A) {
+        // write your code here
+        vector<int> result;
+        int size = A.size();
+        if (size == 0) return result;
+        set<int> st;
+        for (int i = 0; i < size; ++i) {
+            if (st.find(A[i]) == st.end()) st.insert(A[i]);
+            else st.erase(A[i]);
+        }
+        for (set<int>::iterator it = st.begin(); it != st.end(); ++it) {
+            result.push_back(*it);
+        }
+        return result;
+    }
+};
+*/
+/*
+class Solution
+{
+public:
+    vector<int> singleNumber(vector<int>& nums) 
+    {
+        // Pass 1 : 
+        // Get the XOR of the two numbers we need to find
+        int diff = accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
+        // Get its last set bit
+        diff &= -diff;
+
+        // Pass 2 :
+        vector<int> rets = {0, 0}; // this vector stores the two numbers we will return
+        for (int num : nums)
+        {
+            if ((num & diff) == 0) // the bit is not set
+            {
+                rets[0] ^= num;
+            }
+            else // the bit is set
+            {
+                rets[1] ^= num;
+            }
+        }
+        return rets;
+    }
+};
+*/
 int main(void) {
     Solution s;
     vector<int> vec = {1, 2, 1, 3, 2, 5};
