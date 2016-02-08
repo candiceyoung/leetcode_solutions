@@ -31,3 +31,40 @@ public:
         else return true;
     }
 };
+
+/* Solution 2
+
+class Solution {
+private:
+    int total;
+public:
+    int find(vector<int> &roots, int a) {
+        if (roots[a] == -1) return a;
+        else return find(roots, roots[a]);
+    }
+    void uni(vector<int> &roots, int a, int b) {
+        int a_root = find(roots, a);
+        int b_root = find(roots, b);
+        roots[b_root] = a_root;
+        total--;
+    }
+    bool validTree(int n, vector<pair<int, int>>& edges) {
+        int size = edges.size();
+        if (size == 0 && n == 1) return true;
+        else if (size == 0 && n != 1) return false;
+        vector<int> roots(n, -1);
+        total = n;
+        for (int i = 0; i < size; ++i) {
+            int from = edges[i].first;
+            int to = edges[i].second;
+            int from_root = find(roots, from);
+            int to_root = find(roots, to);
+            if (from_root == to_root) return false;
+            uni(roots, from_root, to_root);
+        }
+        if (total == 1) return true;
+        else return false;
+    }
+};
+
+*/
