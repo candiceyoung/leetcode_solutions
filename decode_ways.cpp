@@ -5,29 +5,25 @@ using namespace std;
 class Solution {
 public:
     int numDecodings(string s) {
-        vector<int> d;
-        if (s.length() == 0 || s[0] == '0') return 0;
-        if (s.length() == 1) return 1;
-        d.push_back(1);
-        d.push_back(1);
-        for (int i = 1; i < s.length(); ++i) {
+        int len = s.length();
+        if (len == 0 || s[0] == '0') return 0;
+        vector<int> dp(len + 1, 1);
+        for (int i = 1; i < len; ++i) {
             int ones = s[i] - '0';
             int tens = s[i - 1] - '0';
             if (ones == 0) {
-                if (tens == 1 || tens == 2) d.push_back(d[i - 1]);
+                if (tens == 1 || tens == 2) dp[i + 1] = dp[i - 1];
                 else return 0;
             }
             else {
-                int num = tens * 10 + ones;
-                if (11 <= num && num <= 26) {
-                    d.push_back(d[i - 1] + d[i]);
+                int num = ones + tens * 10;
+                if (num >= 11 && num <= 26) {
+                    dp[i + 1] = dp[i] + dp[i - 1];
                 }
-                else {
-                    d.push_back(d[i]);
-                }
+                else dp[i + 1] = dp[i];
             }
         }
-        return d[s.length()];
+        return dp[len];
     }
 };
 int main(void) {
