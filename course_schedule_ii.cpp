@@ -4,45 +4,44 @@
 using namespace std;
 class Solution {
 public:
-    void helper(vector<vector<int>> &graph, vector<bool> &visited, int i, stack<int> &stk) {
+    void helper(vector<vector<int>> &graph, stack<int> &stk, int i, vector<bool> &visited) {
         visited[i] = true;
-        for (vector<int>::iterator it = graph[i].begin(); it != graph[i].end(); ++it) {
-            if (!visited[*it]) helper(graph, visited, *it, stk);
+        for (int j = 0; j < graph[i].size(); ++j) {
+            if (!visited[graph[i][j]]) helper(graph, stk, graph[i][j], visited);
         }
         stk.push(i);
     }
     vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
-        int size = prerequisites.size();
         vector<int> result;
+        int size = prerequisites.size();
         if (numCourses == 0) return result;
+        if (size == 0) {
+            for (int i = 0; i < numCourses; ++i) {
+                result.push_back(i);
+            }
+            return result;
+        }
         vector<vector<int>> graph(numCourses);
         for (int i = 0; i < size; ++i) {
             graph[prerequisites[i].second].push_back(prerequisites[i].first);
         }
-        vector<bool> visited(numCourses);
         stack<int> stk;
+        vector<bool> visited(numCourses, false);
         for (int i = 0; i < numCourses; ++i) {
-            if (!visited[i]) helper(graph, visited, i, stk);
+            if (!visited[i]) helper(graph, stk, i, visited);
         }
-        for (int i = 0; i < numCourses; ++i) {
-            visited[i] = false;
-        }
-        int top = stk.top();
-        stk.pop();
-        visited[top] = true;
-        result.push_back(top);
-        int stk_size = stk.size();
-        for (int i = 0; i < stk_size; ++i) {
-            int top = stk.top();
-            stk.pop();
-            visited[top] = true;
-            for (int i = 0; i < graph[top].size(); ++i) {
-                if (visited[graph[top][i]]) {
+        for (int i = 0; i < numCourses; ++i) visited[i] = false;
+        while (!stk.empty()) {
+            int temp = stk.top();
+            visited[temp] = true;
+            for (int i = 0; i < graph[temp].size(); ++i) {
+                if (visited[graph[temp][i]]) {
                     result.clear();
                     return result;
                 }
             }
-            result.push_back(top);
+            result.push_back(temp);
+            stk.pop();
         }
         return result;
     }
