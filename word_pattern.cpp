@@ -39,3 +39,39 @@ int main(void) {
     cout << s.wordPattern(pattern, str) << endl;
     return 0;
 }
+
+/*
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+        if (pattern == "" || str == "") return false;
+        int pos = 0;
+        int i = 0;
+        unordered_map<string, char> mp;
+        set<char> st;
+        while (str.find(" ", pos) != string::npos) {
+            string word = str.substr(pos, str.find(" ", pos) - pos);
+            pos = str.find(" ", pos) + 1;
+            if (mp.find(word) == mp.end() && st.find(pattern[i]) == st.end()) {
+                st.insert(pattern[i]);
+                mp[word] = pattern[i];
+            }
+            else if (mp.find(word) != mp.end() && mp[word] != pattern[i]) return false;
+            else if (mp.find(word) == mp.end() && st.find(pattern[i]) != st.end()) return false;
+            i++;
+        }
+        if (pos == 0 && i == 0) {
+            if (pattern.length() == 1) return true;
+            else return false;
+        }
+        string word = str.substr(pos, str.length() - pos);
+        if (mp.find(word) == mp.end() && st.find(pattern[i]) == st.end()) {
+            st.insert(pattern[i]);
+            mp[word] = pattern[i];
+        }
+        else if (mp.find(word) != mp.end() && mp[word] != pattern[i]) return false;
+        else if (mp.find(word) == mp.end() && st.find(pattern[i]) != st.end()) return false;
+        return true;
+    }
+};
+*/
