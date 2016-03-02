@@ -38,3 +38,32 @@ public:
         modify(root, target1, target2);
     }
 };
+
+/*
+class Solution {
+private:
+    TreeNode *first, *second;
+    TreeNode *pre;
+public:
+    Solution() {
+        first = NULL;
+        second = NULL;
+        pre = new TreeNode(INT_MIN);
+    }
+    void traverse(TreeNode* root) {
+        if (!root) return;
+        traverse(root->left);
+        if (!first && pre->val >= root->val) first = pre;
+        if (first && pre->val >= root->val) second = root;
+        pre = root;
+        traverse(root->right);
+    }
+    void recoverTree(TreeNode* root) {
+        if (!root) return;
+        traverse(root);
+        int temp = first->val;
+        first->val = second->val;
+        second->val = temp;
+    }
+};
+*/
