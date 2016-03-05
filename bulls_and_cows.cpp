@@ -30,3 +30,31 @@ int main(void) {
     cout << s.getHint("1123", "0111") << endl;
     return 0;
 }
+
+/*
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int total_a = 0, total_b = 0;
+        int len_s = secret.length();
+        int len_g = guess.length();
+        if (len_s != len_g) return "0A0B";
+        unordered_map<char, int> mp;
+        for (int i = 0; i < len_s; ++i) {
+            if (secret[i] == guess[i]) total_a++;
+            else {
+                if (mp.find(secret[i]) == mp.end()) mp[secret[i]] = 1;
+                else mp[secret[i]]++;
+            }
+        }
+        for (int i = 0; i < len_g; ++i) {
+            if (guess[i] != secret[i] && mp.find(guess[i]) != mp.end() && mp[guess[i]] > 0) { 
+                total_b++;
+                mp[guess[i]]--;
+            }
+            
+        }
+        return to_string(total_a) + "A" + to_string(total_b) + "B";
+    }
+};
+*/
