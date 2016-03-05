@@ -35,3 +35,15 @@ int main(void) {
     cout << s.minDepth(n1) << endl;
     return 0;
 }
+
+/*
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (!root) return 0;
+        if (!root->left) return 1 + minDepth(root->right);
+        if (!root->right) return 1 + minDepth(root->left);
+        return min(minDepth(root->left), minDepth(root->right)) + 1;
+    }
+};
+*/
