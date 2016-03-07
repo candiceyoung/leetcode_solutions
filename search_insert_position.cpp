@@ -4,20 +4,16 @@ using namespace std;
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        vector<int>::iterator it;
-        int position = 0;
-        for (it = nums.begin(); it < nums.end(); ++it) {
-            if (target == *it) {
-                return position;
-            }
-            else if (target < *it) {
-                return position;
-            }
-            else {
-                position++;
-            }
+        int size = nums.size();
+        if (size == 0) return 0;
+        int left = 0, right = size - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] < target) left = mid + 1;
+            else right = mid - 1;
         }
-        return position;
+        return left;
     }
 };
 int main(void) {
