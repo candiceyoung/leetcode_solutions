@@ -18,3 +18,28 @@ public:
         }
     }
 };
+
+/*
+class Solution {
+private:
+    vector<pair<int, int>> directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+public:
+    void recursive(vector<vector<int>> &rooms, int row, int col, int dist) {
+        if (row < 0 || row >= rooms.size() || col < 0 || col >= rooms[0].size() || rooms[row][col] < dist) return;
+        rooms[row][col] = dist;
+        for (int i = 0; i < directions.size(); ++i) {
+            recursive(rooms, row + directions[i].first, col + directions[i].second, dist + 1);
+        }
+    }
+    void wallsAndGates(vector<vector<int>>& rooms) {
+        int row = rooms.size();
+        if (row == 0) return;
+        int col = rooms[0].size();
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                if (rooms[i][j] == 0) recursive(rooms, i, j, 0);
+            }
+        }
+    }
+};
+*/
