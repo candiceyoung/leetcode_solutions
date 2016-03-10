@@ -25,6 +25,27 @@ public:
         else return profit[prices.size() - 1];
     }
 };
+/*
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int size = prices.size();
+        if (size == 0) return 0;
+        vector<int> B(size, 0);
+        vector<int> S(size, 0);
+        vector<int> C(size, 0);
+        B[0] = -prices[0];
+        int maximum = 0;
+        for (int i = 1; i < size; ++i) {
+            B[i] = max(C[i - 1] - prices[i], B[i - 1]);
+            S[i] = max(B[i - 1] + prices[i], S[i - 1]);
+            C[i] = S[i - 1];
+            maximum = max(maximum, max(B[i], max(S[i], C[i])));
+        }
+        return maximum;
+    }
+};
+*/
 int main(void) {
     vector<int> prices = {1, 2, 3, 0, 2};
     vector<int> prices1 = {5, 3, 4, 8, 15, 2};
