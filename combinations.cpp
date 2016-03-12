@@ -1,39 +1,20 @@
-#include <iostream>
-#include <vector>
-using namespace std;
 class Solution {
 public:
-    void re_combine(vector<int>& temp, int i, int k, int n) {
+    void recursive(vector<vector<int>> &result, vector<int> &temp, int start, int &k, int &n) {
         if (k == temp.size()) {
-            ans.push_back(temp);
+            result.push_back(temp);
+            return;
         }
-        for (int j = i; j <= n; ++j) {
-            temp.push_back(j);
-            re_combine(temp, j + 1, k, n);
+        for (int i = start; i <= n; ++i) {
+            temp.push_back(i);
+            recursive(result, temp, i + 1, k, n);
             temp.pop_back();
         }
     }
-
     vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> result;
         vector<int> temp;
-        re_combine(temp, 1, k, n);
-        return ans;
+        recursive(result, temp, 1, k, n);
+        return result;
     }
-private:
-    vector<vector<int>> ans;
 };
-
-int main(void) {
-    vector<vector<int>> result;
-    Solution s;
-    result = s.combine(5, 3);
-    int row_num = result.size();
-    int col_num = result[0].size();
-    for (int i = 0; i < row_num; ++i) {
-        for (int j = 0; j < col_num; ++j) {
-            cout << result[i][j] << "   ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
