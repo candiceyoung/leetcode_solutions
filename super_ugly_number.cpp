@@ -3,19 +3,17 @@ public:
     int nthSuperUglyNumber(int n, vector<int>& primes) {
         int size = primes.size();
         if (size == 0) return 0;
+        vector<int> ugly(n);
         vector<int> pointers(size, 0);
-        vector<int> ugly;
-        ugly.push_back(1);
-        int counter = 1;
-        while (counter < n) {
+        ugly[0] = 1;
+        for (int i = 1; i < n; ++i) {
             int minUgly = INT_MAX;
-            for (int i = 0; i < size; ++i) {
-                minUgly = min(minUgly, ugly[pointers[i]] * primes[i]);
+            for (int j = 0; j < size; ++j) {
+                minUgly = min(minUgly, ugly[pointers[j]] * primes[j]);
             }
-            ugly.push_back(minUgly);
-            counter++;
-            for (int i = 0; i < size; ++i) {
-                if (minUgly == ugly[pointers[i]] * primes[i]) pointers[i]++;
+            ugly[i] = minUgly;
+            for (int j = 0; j < size; ++j) {
+                if (minUgly == ugly[pointers[j]] * primes[j]) pointers[j]++;
             }
         }
         return ugly[n - 1];
