@@ -68,3 +68,42 @@ public:
 };
 
 */
+
+/*
+class Solution {
+public:
+    void recursive(vector<vector<int>> &graph, vector<bool> &visited, int former, int i, bool &isValid) {
+        if (visited[i]) {
+            isValid = false;
+            return;
+        }
+        if (!isValid) return;
+        visited[i] = true;
+        for (int j = 0; j < graph[i].size(); ++j) {
+            if (graph[i][j] == former) continue;
+            recursive(graph, visited, i, graph[i][j], isValid);
+        }
+    }
+    bool validTree(int n, vector<pair<int, int>>& edges) {
+        int size = edges.size();
+        if (size == 0 && n < 2) return true;
+        else if (size == 0 && n > 1) return false;
+        vector<vector<int>> graph(n);
+        for (int i = 0; i < size; ++i) {
+            graph[edges[i].first].push_back(edges[i].second);
+            graph[edges[i].second].push_back(edges[i].first);
+        }
+        vector<bool> visited(n, false);
+        int total = 0;
+        bool isValid = true;
+        for (int i = 0; i < n; ++i) {
+            if (!visited[i]) {
+                recursive(graph, visited, -1, i, isValid);
+                total++;
+            }
+            if (total > 1) return false;
+        }
+        return isValid;
+    }
+};
+*/
