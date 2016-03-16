@@ -56,3 +56,24 @@ int main(void) {
     else cout << "haha" << endl;
     return 0;
 }
+/*
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if (!head) return NULL;
+        set<ListNode *> st;
+        ListNode *current = head;
+        bool flag = true;
+        while (current) {
+            if (st.count(current) == 0) {
+                st.insert(current);
+                current = current->next;
+            }
+            else {
+                return current;
+            }
+        }
+        return NULL;
+    }
+};
+*/
