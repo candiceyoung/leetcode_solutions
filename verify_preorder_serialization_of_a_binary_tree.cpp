@@ -1,9 +1,9 @@
 class Solution {
 public:
     bool isValidSerialization(string preorder) {
-        stack<string> stk;
         int len = preorder.length();
         if (len == 0) return true;
+        stack<string> stk;
         int pos = 0;
         preorder += ',';
         while (preorder.find(',', pos) != string::npos) {
@@ -12,23 +12,18 @@ public:
             pos = preorder.find(',', pos);
             pos++;
             
-            if (stk.size() < 2) continue;
-            while (stk.size() > 2) {
-                string first = stk.top();
+            while (stk.top() == "#" && stk.size() > 2) {
                 stk.pop();
                 string second = stk.top();
-                stk.pop();
-                if (first == "#" && second == "#") {
-                    if (stk.top() == "#") return false;
-                    else {
-                        stk.pop();
-                        stk.push("#");
-                    }
+                if (second != "#") {
+                    stk.push("#");
+                    break;
                 }
                 else {
-                    stk.push(second);
-                    stk.push(first);
-                    break;
+                    stk.pop();
+                    if (stk.size() == 1 && stk.top() == "#") return false;
+                    stk.pop();
+                    stk.push("#");
                 }
             }
         }
