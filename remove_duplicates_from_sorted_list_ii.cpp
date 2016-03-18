@@ -10,34 +10,27 @@ class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         if (!head) return NULL;
-        if (head->next == NULL) return head;
         int temp = (head->val == INT_MIN) ? 0 : (head->val - 1);
         ListNode *dummy = new ListNode(temp);
         dummy->next = head;
+        ListNode *pre = dummy, *cur = head;
         int former = dummy->val;
-        ListNode *current = head;
-        ListNode *pre = dummy;
-        int flag = 0;
-        while (current) {
-            if (current->next && current->val == current->next->val) {
-                former = current->val;
-                current = current->next;
+        pre->next = NULL;
+        while (cur) {
+            if (cur->next && cur->next->val == cur->val) {
+                former = cur->val;
+                cur = cur->next;
             }
-            else if (current->val == former) {
-                former = current->val;
-                current = current->next;
-                flag = 0;
+            else if (cur->val == former) {
+                cur = cur->next;
             }
             else {
-                former = current->val;
-                pre->next = current;
-                pre = current;
-                current = current->next;
-                flag = 1;
+                former = cur->val;
+                pre->next = cur;
+                pre = pre->next;
+                cur = cur->next;
+                pre->next = NULL;
             }
-        }
-        if (!flag) {
-            pre->next = current;
         }
         return dummy->next;
     }
