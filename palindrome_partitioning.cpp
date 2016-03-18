@@ -50,3 +50,39 @@ int main(void) {
     }
     return 0;
 }
+
+/*
+class Solution {
+public:
+    bool isPalindrome(string &s) {
+        int len = s.length();
+        if (len == 0) return true;
+        for (int i = 0; i < len / 2; ++i) {
+            if (s[i] != s[len - 1 - i]) return false;
+        }
+        return true;
+    }
+    void recursive(vector<vector<string>> &result, vector<string> &temp, string &s, int i) {
+        if (i >= s.length()) {
+            result.push_back(temp);
+            return;
+        }
+        for (int j = i; j < s.length(); ++j) {
+            string tt = s.substr(i, j - i + 1);
+            if (isPalindrome(tt)) {
+                temp.push_back(tt);
+                recursive(result, temp, s, j + 1);
+                temp.pop_back();
+            }
+        }
+    }
+    vector<vector<string>> partition(string s) {
+        vector<vector<string>> result;
+        int len = s.length();
+        if (len == 0) return result;
+        vector<string> temp;
+        recursive(result, temp, s, 0);
+        return result;
+    }
+};
+*/
