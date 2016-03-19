@@ -47,3 +47,36 @@ int main(void) {
     }
     return 0;
 }
+
+/*
+class Solution {
+public:
+    void recursive(vector<string> &result, string &temp, int total, int start, string &s) {
+        if (total == 4 && start == s.size()) {
+            temp.erase(temp.end() - 1);
+            result.push_back(temp);
+            return;
+        }
+        if (s.size() - start > (4 - total) * 3) return;
+        if (s.size() - start < (4 - total) * 1) return;
+        for (int i = 1; i < 4; ++i) {
+            string tt = temp;
+            string sub = s.substr(start, i);
+            int sub_value = stoi(sub, nullptr, 10);
+            if (sub.size() != 1 && sub[0] == '0') continue;
+            if (sub_value <= 255 && sub_value >= 0) {
+                tt += sub + '.';
+                recursive(result, tt, total + 1, start + i, s);
+            }
+        }
+    }
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> result;
+        int size = s.size();
+        if (size < 4) return result;
+        string temp;
+        recursive(result, temp, 0, 0, s);
+        return result;
+    }
+};
+*/
